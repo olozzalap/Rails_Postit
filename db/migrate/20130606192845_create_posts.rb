@@ -1,20 +1,13 @@
 class CreatePosts < ActiveRecord::Migration
-  def change
+  def up
     create_table :posts do |post|
-    	post.string :url
-    	post.string :title
-    	post.text :description
+      post.string :url, :title
+      post.text :description
       post.timestamps
     end
-    create_table :users do |user|
-    	user.string :username
-      user.timestamps
-    end
-  end
-
-  def up
   end
 
   def down
+    drop_table :posts
   end
-end
+end 

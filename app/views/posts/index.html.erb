@@ -1,1 +1,8 @@
 <h5>Welcome to the project template!</h5>
+<ul>
+	<% for i in 0...@posts.count %>
+	<li><strong><%= @posts[i].title %></strong></li>
+	<li><i><%= @posts[i].description %></i> --- <%= @posts[i].url %></li>
+	<br />
+	<% end %>
+</ul>
