@@ -7,5 +7,14 @@ Postit::Application.routes.draw do
   # get '/post/:id/edit', to: 'posts#edit'
   # put 'post/:id', to: 'posts#update'
   # delete 'post/:id', to: 'posts#destroy'
-  resources :posts, except: [:destroy]
+  resources :posts, except: [:destroy] do
+    member do #individual
+  	  get 'flag'
+    end
+    collection do #all posts
+      get 'archives'
+    end
+    resources :comments, only: [:show, :index]
+  end
+
 end
