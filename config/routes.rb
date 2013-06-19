@@ -14,7 +14,9 @@ Postit::Application.routes.draw do
     collection do #all posts
       get 'archives'
     end
-    resources :comments, only: [:show, :index]
   end
+    
+  resources :comments, only: [:show, :index]
+  resources :users
 
 end
