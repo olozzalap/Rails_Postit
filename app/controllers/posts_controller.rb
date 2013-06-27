@@ -4,11 +4,10 @@ class PostsController < ApplicationController
   end
 
   def show
-  	@post = User.find(params[:id]).posts.first
+  	@post = Post.find(params[:id])
   end
 
   def new
-
   end
 
   def create
@@ -16,9 +15,21 @@ class PostsController < ApplicationController
   end
 
   def edit
+    @post = Post.find(params[:id])
   end
 
   def update
+    @post = Post.find(params[:id])
+    if params[:title] != nil and params[:title] != ""
+      @post.update_attributes(title: params[:title])
+    end
+    if params[:description] != nil and params[:description] != ""
+      @post.update_attributes(description: params[:description])
+    end
+    if params[:url] != nil and params[:url] != ""
+      @post.update_attributes(url: params[:url])
+    end
+    render :new
   end
 
   def destory

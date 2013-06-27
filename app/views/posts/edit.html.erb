@@ -1,0 +1,15 @@
+<h2>Current Post: <%= @post.title %></h2>
+<br />
+<h5><%= @post.description %></h5>
+<p><em><%= @post.url %></em></p>
+<br />
+<br />
+<%= form_for @post, :method => :put do %>
+<form method="post" action=<%= "/posts/#{@post.id}" %>>
+	Edit Title: <input type="text" name="title">
+	Edit description: <input type="text" name="description">
+	Edit URL: <input type="text" name="url">
+	<br/>
+	Submit changes! <input type="submit">
+</form>
+<% end %>
