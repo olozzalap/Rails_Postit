@@ -1,4 +1,8 @@
 <h2>Showing Post: <%= @post.title %></h2>
 <br />
 <h5><%= @post.description %></h5>
+<br />
+<ul><% @post.comments.each do |t| %>
+<li><%= t.comment %></li>
+</ul><% end %>
 <p><em><%= @post.url %></em></p>
