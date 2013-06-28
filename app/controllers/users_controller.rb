@@ -1,29 +1,17 @@
 class UsersController < ApplicationController
-  def index
-    @users = User.all
-  end
-
-  def show
-    @user = User.find(params[:id])
-  end
 
   def new
-
+    @user = User.new
   end
 
   def create
-    User.create(username: params[:username])
+    @user = User.new("#{params[:username]}")
+    if @user.save
+      redirect_to root_path, notice: 'You are now registered!'
+    else
+      @user.errors.delete(:password_digest)
+      render :new
+    end
   end
 
-  def edit
-    @user = User.find(params[:id])
-  end
-
-  def update
-    @user = User.find(params[:id])
-  end
-
-  def destory
-    @user = User.find(params[:id])
-  end
 end

@@ -1,8 +1,32 @@
-<h2>Showing Post: <%= @post.title %></h2>
+<h2><%= @post.title %></h2>
 <br />
 <h5><%= @post.description %></h5>
+<h6><em><%= @post.url %></em></h6>
+
 <br />
-<ul><% @post.comments.each do |t| %>
-<li><%= t.comment %></li>
+<br />
+
+<% if @comments != nil %>
+<ul><% @comments.each do |t| %>
+  <li><%= t.comment %></li>
+    <ul><li>Posted: <%= t.created_at %></li>
+    <% if t.user_id != nil %>
+	  <li>By: <%= t.user.username %></li></ul>
+	  <% end %>
 </ul><% end %>
-<p><em><%= @post.url %></em></p>
+<% end %>
+
+<% if @new_comment == true %>
+  <form action=<%="/posts/#{@post.id}/comments"%> method="post">
+	  Comment: <input name="comment" type="text">
+	  <input type="submit">
+  </form>
+<% end %>
+
+<% if @edit_comment == true %>
+<%= form_for @comments.first, :method => :put, :url => "/posts/#{params[:post_id]}/comments/#{params[:id]}" do %>
+	Edit Comment: <input type="text" name="comment">
+	<br/>
+	Submit changes! <input type="submit">
+<% end %>
+<% end %>

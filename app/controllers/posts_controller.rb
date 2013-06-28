@@ -14,7 +14,7 @@ class PostsController < ApplicationController
     if params[:title] != nil and params[:title] != "" and params[:url] != nil and params[:url] != ""
   	  Post.create(title: params[:title], description: params[:description], url: params[:url])
     else
-      redirect_to '/posts/new', :flash => {:error => "Please make sure the new post has a title and url at minimum."}
+      redirect_to '/posts/new', flash[:error] = "Please make sure the new post has a title and url at minimum."
     end
   end
 
@@ -36,6 +36,6 @@ class PostsController < ApplicationController
     end
   end
 
-  def destory
+  def destroy
   end
 end
